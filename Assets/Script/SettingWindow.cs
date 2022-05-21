@@ -12,10 +12,10 @@ public class SettingWindow : MonoBehaviour
 
     private void Start()
     {
-        Setting.GetComponent<RectTransform>().DOSizeDelta(new Vector2(700, 500), 0.7f);
+        Setting.GetComponent<RectTransform>().DOSizeDelta(new Vector2(798.8884f, 608.8347f), 0.4f);
         X.GetComponent<RectTransform>().DOSizeDelta(new Vector2(100, 100), 1.5f);
-        Music.GetComponent<RectTransform>().DOSizeDelta(new Vector2(230, 230), 1.5f);
-        Eff.GetComponent<RectTransform>().DOSizeDelta(new Vector2(230, 230), 1.5f);
-        Change.GetComponent<RectTransform>().DOSizeDelta(new Vector2(550, 100), 1.5f);
+        Music.GetComponent<RectTransform>().DOSizeDelta(new Vector2(250, 250), 1.5f);
+        Eff.GetComponent<RectTransform>().DOSizeDelta(new Vector2(250, 250), 1.5f);
+        Change.GetComponent<RectTransform>().DOSizeDelta(new Vector2(537, 225), 1.5f);
     }
 }
