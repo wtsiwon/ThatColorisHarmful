@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-public class BtnManager : Singleton<BtnManager>
+public class BtnManager : MonoBehaviour
 {
     public Button breakButton;
     public Button nextButton;
