@@ -377,6 +377,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &572530665
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1601956916}
+    m_Modifications:
+    - target: {fileID: 8545285631029726628, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_Name
+      value: SettingWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+--- !u!4 &572530666 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8545285631029726629, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
+  m_PrefabInstance: {fileID: 572530665}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &580553983
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +616,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638991935}
   m_CullTransparentMesh: 1
+--- !u!1 &846472763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846472765}
+  - component: {fileID: 846472764}
+  m_Layer: 0
+  m_Name: BtnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &846472764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846472763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89fad2c4d443454eb962f324d6d5ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakButton: {fileID: 2130735550}
+  nextButton: {fileID: 1182813474}
+  pauseButton: {fileID: 1279993026}
+  SettingWindow: {fileID: 0}
+  StartBG: {fileID: 0}
+  SettingTurnOnOff: 1
+  playerMotion: {fileID: 0}
+  player: {fileID: 0}
+--- !u!4 &846472765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846472763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.36901832, y: -0.08688249, z: -2.2176657}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956822069
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +1038,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1182813475}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 846472764}
+        m_TargetAssemblyTypeName: BtnManager, Assembly-CSharp
+        m_MethodName: Next
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1182813475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1442,7 +1567,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1601956916}
-  - component: {fileID: 1601956917}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1464,6 +1588,7 @@ RectTransform:
   - {fileID: 1182813473}
   - {fileID: 2130735549}
   - {fileID: 1279993025}
+  - {fileID: 572530666}
   m_Father: {fileID: 1460189052}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1472,23 +1597,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1601956917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601956915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89fad2c4d443454eb962f324d6d5ab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  breakButton: {fileID: 2130735550}
-  nextButton: {fileID: 1182813474}
-  pauseButton: {fileID: 1279993026}
-  SettingWindow: {fileID: 0}
-  StartBG: {fileID: 0}
 --- !u!1 &1619126426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,7 +1920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1881198256
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2049,7 +2157,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2130735551}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 846472764}
+        m_TargetAssemblyTypeName: BtnManager, Assembly-CSharp
+        m_MethodName: Break
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2130735551
 MonoBehaviour:
   m_ObjectHideFlags: 0

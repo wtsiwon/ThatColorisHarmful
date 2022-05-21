@@ -14,7 +14,8 @@ public class BtnManager : MonoBehaviour
     public GameObject SettingWindow;
     [SerializeField] private GameObject StartBG;
     public bool SettingTurnOnOff = true;
-
+    public GameObject playerMotion;
+    public GameObject player;
     private void Awake() => Instance = this;
 
     public void PlayClick() => StartCoroutine(PlayCoroutine());
@@ -47,6 +48,7 @@ public class BtnManager : MonoBehaviour
     {
         nextButton.onClick.AddListener(() =>
         {
+
             if (GameManager.Instance.OK)
             {
                 GameManager.Instance.Next(SlowZone.Instance.instanceobj);
@@ -57,11 +59,27 @@ public class BtnManager : MonoBehaviour
     {
         breakButton.onClick.AddListener(() =>
         {
+            playerMotion.gameObject.SetActive(true);
+            player.gameObject.SetActive(false);
+            Invoke("Change", 0.1f);
             if (GameManager.Instance.OK)
             {
-
+                GameManager.Instance.Break(SlowZone.Instance.instanceobj);
             }
         });
+    }
+    public void Change()
+    {
+        playerMotion.gameObject.SetActive(false);
+        player.gameObject.SetActive(true);
+    }
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+    public void play()
+    {
+        Time.timeScale = 1;
     }
 
 }

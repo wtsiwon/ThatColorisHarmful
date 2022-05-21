@@ -118,4 +118,17 @@ public class GameManager : Singleton<GameManager>
             score += SCORE;
         }
     }
+    public void Break(GameObject obj)
+    {
+        if (obj.GetComponent<Object>().eColor == EColor.Green)
+        {
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
+            hp -= 1;
+        }
+        else if (obj.GetComponent<Object>().eColor == EColor.Other)
+        {
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * obj.GetComponent<Object>().dspd;
+            score += SCORE;
+        }
+    }
 }
