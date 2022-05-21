@@ -13,7 +13,6 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Start() => StartSetting();
 
-
     void StartSetting()
     {
         #region Music
@@ -23,14 +22,31 @@ public class AudioManager : Singleton<AudioManager>
                 AudioList[1].Stop();
                 AudioList[0].Play();
                 break;
-            case "Ingame":
+            case "InGame":
                 AudioList[0].Stop();
                 AudioList[1].Play();
                 break;
         }
         #endregion
     }
+    #region 씬이동마다 실행하기 위한 함수
+    void OnEnable()
+    {
+        // 델리게이트 체인 추가
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartSetting();
+    }
+
+    void OnDisable()
+    {
+        // 델리게이트 체인 제거
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    #endregion
     public void SetMusicValue()
     {
         if(!MusicCheck)
