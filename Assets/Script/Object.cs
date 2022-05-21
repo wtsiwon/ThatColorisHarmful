@@ -69,7 +69,7 @@ public class Object : MonoBehaviour
         {
             //²¨Áö¼À
         }
-        //´ÙÀ½ ¹°°Ç ¶³¾îÁö±â
+        GameManager.Instance.SpawnObj();
         GameManager.Instance.time = 0;
     }
 }

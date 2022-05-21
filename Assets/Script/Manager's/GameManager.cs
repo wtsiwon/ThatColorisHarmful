@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     public float slowTime;
     public float time;
     public int startTime = 3;
+    public bool isEnd;
     public int hp;
     public float spawnPersent;
 
@@ -30,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         slider = GetComponent<Slider>();
+        SpawnObj();
     }
     private void Update()
     {
@@ -51,7 +54,7 @@ public class GameManager : Singleton<GameManager>
                 hpobj[2].gameObject.SetActive(false);
                 break;
             default:
-                //≈∏¿Ã∆≤ §°§°
+                
                 break;
 
         }
@@ -84,6 +87,11 @@ public class GameManager : Singleton<GameManager>
             int ranomobj = Random.Range(0, greenobj.Count);
             Instantiate(greenobj[ranomobj],pos);
         }
+        else
+        {
+            int randomobj = Random.Range(0, otherobj.Count);
+            Instantiate(otherobj[randomobj], pos);
+        }
     }
     public void Next(GameObject obj)
     {
@@ -97,9 +105,5 @@ public class GameManager : Singleton<GameManager>
             obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * obj.GetComponent<Object>().dspd;
             score += SCORE;
         }
-    }
-    public void GameEnd()
-    {
-        
     }
 }

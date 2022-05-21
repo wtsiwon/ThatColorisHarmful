@@ -39,16 +39,17 @@ public class BtnManager : Singleton<BtnManager>
             {
                 GameManager.Instance.Next(SlowZone.Instance.instanceobj);
             }
-            else if (GameManager.Instance.OK)
-            {
-                GameManager.Instance.Next(SlowZone.Instance.instanceobj);
-            }
-
         });
     }
     public void Break()
     {
+        breakButton.onClick.AddListener(() =>
+        {
+            if (GameManager.Instance.OK)
+            {
 
+            }
+        });
     }
 
 }
