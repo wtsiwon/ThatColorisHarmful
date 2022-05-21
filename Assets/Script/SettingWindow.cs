@@ -27,6 +27,7 @@ public class SettingWindow : MonoBehaviour
 
     public void ExitClick()
     {
+        AudioManager.Instance.EffAudioList[1].Play();
         Destroy(gameObject);
         BtnManager.Instance.SettingTurnOnOff = true;
     }

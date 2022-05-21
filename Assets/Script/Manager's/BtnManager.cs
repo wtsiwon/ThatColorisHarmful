@@ -22,12 +22,14 @@ public class BtnManager : MonoBehaviour
     {
         if (SettingTurnOnOff == true)
         {
+            AudioManager.Instance.EffAudioList[1].Play();
             Instantiate(SettingWindow, GameObject.Find("Canvas").transform);
             SettingTurnOnOff = false;
         }
     }
     IEnumerator PlayCoroutine()
     {
+        AudioManager.Instance.EffAudioList[0].Play();
         StartBG.GetComponent<Image>().DOFade(0.75f, 1f);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Ingame");
