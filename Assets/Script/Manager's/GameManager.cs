@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public float spawnPersent;
 
     private int score;
+    private int highScore;
     public bool OK;
     [Header("Object")]
     [Space(20f)]
@@ -76,8 +77,19 @@ public class GameManager : Singleton<GameManager>
             score += SCORE;
             scoreText.text = "Score: " + score.ToString(); 
         }
-            
-        
+    }
+    public int HighScore
+    {
+        get => highScore;
+        set
+        {
+            highScore = value;
+            if (highScore < score)
+            {
+                highScore = score;
+                PlayerPrefs.SetInt("Score", highScore);
+            }
+        }
     }
     public void SpawnObj()
     {

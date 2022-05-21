@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Camera MainCamera;
+    Vector3 CameraPos;
+
+    [SerializeField] [Range(0.01f, 0.1f)] float shakeRange = 0.05f; //Ω¶¿Ã≈© ≈©±‚
+    [SerializeField] [Range(0.1f, 1f)] float duration = 0.5f; //Ω¶¿Ã≈© ±‚∞£
+
+    public void Shake()
     {
-        
+        CameraPos = MainCamera.transform.position;
+        InvokeRepeating("StartShake", 0f, 0.005f);
+        Invoke("StopShake", duration);
     }
 
-    // Update is called once per frame
-    void Update()
+    void StartShake()
     {
-        
+        float cameraPosX = Random.value * shakeRange * 2 - shakeRange;
+        float cameraPosY = Random.value * shakeRange * 2 - shakeRange;
+        Vector3 cameraPos = MainCamera.transform.position;
+        cameraPos.x = cameraPosX;
+        cameraPos.y = cameraPosY;
+        MainCamera.transform.position = cameraPos;
     }
+    void StopShake()
+    {
+        CancelInvoke("StartShake");
+        MainCamera.transform.position = CameraPos;
+    }
+
 }
