@@ -328,12 +328,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Setting: {fileID: 8545285631701139146}
-  X: {fileID: 8545285631969655209}
-  Music: {fileID: 8545285630531479553}
-  Eff: {fileID: 8545285632018867180}
-  Change: {fileID: 8545285631359190408}
-  Left: {fileID: 3667852507594185628}
-  Right: {fileID: 2260687417876328926}
+  MusicImage: {fileID: 8545285630531479676}
+  EffImage: {fileID: 8545285632018867183}
+  OnMusicSprite: {fileID: 21300000, guid: bab2cdcd212ae5646afff0f7b65920ec, type: 3}
+  OffMusicSprite: {fileID: 21300000, guid: 54ef73434d93a7f4c944798b213f9efc, type: 3}
+  OnEffSprite: {fileID: 21300000, guid: 7e0fce29d149d9246987a8885b0af918, type: 3}
+  OffEffSprite: {fileID: 21300000, guid: 712c4822c461cc840b2cb61e553ecf80, type: 3}
 --- !u!1 &8545285631233379796
 GameObject:
   m_ObjectHideFlags: 0

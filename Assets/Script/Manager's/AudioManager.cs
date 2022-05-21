@@ -9,7 +9,7 @@ public class AudioManager : Singleton<AudioManager>
     public List<AudioSource> AudioList = new List<AudioSource>(); //배경 음악소스 리스트
     public List<AudioSource> EffAudioList = new List<AudioSource>(); //효과음 음악소스 리스트
 
-    private bool MusicCheck = false, EffCheck = false;
+    public bool MusicCheck = false, EffCheck = false;
 
     private void Start() => StartSetting();
 
