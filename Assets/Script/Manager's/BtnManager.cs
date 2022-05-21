@@ -6,14 +6,26 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 public class BtnManager : MonoBehaviour
 {
+    public static BtnManager Instance { get; set; }
+
     public Button breakButton;
     public Button nextButton;
     public Button pauseButton;
     public GameObject SettingWindow;
     [SerializeField] private GameObject StartBG;
-    public void PlayClick() => StartCoroutine(PlayCoroutine());
-    public void SettingClick() => Instantiate(SettingWindow, GameObject.Find("Canvas").transform);
+    public bool SettingTurnOnOff = true;
 
+    private void Awake() => Instance = this;
+
+    public void PlayClick() => StartCoroutine(PlayCoroutine());
+    public void SettingClick()
+    {
+        if (SettingTurnOnOff == true)
+        {
+            Instantiate(SettingWindow, GameObject.Find("Canvas").transform);
+            SettingTurnOnOff = false;
+        }
+    }
     IEnumerator PlayCoroutine()
     {
         StartBG.GetComponent<Image>().DOFade(0.75f, 1f);
