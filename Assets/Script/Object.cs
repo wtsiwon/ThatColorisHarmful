@@ -75,7 +75,11 @@ public class Object : MonoBehaviour
             rb.velocity = Vector2.down * spd;//??? 어떨땐 나고 불규칙적인 오류..
         }
     }
-   
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GameManager.Instance.OK = false;
+    }
+
     private void OnDestroy()
     {
         if (eColor == EColor.Green)
@@ -88,6 +92,5 @@ public class Object : MonoBehaviour
         }
         GameManager.Instance.SpawnObj();
         GameManager.Instance.time = 0;
-
     }
 }
