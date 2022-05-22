@@ -166,8 +166,8 @@ public class GameManager : MonoBehaviour
         if (obj == null) return;
         if (obj.GetComponent<Object>().eColor == EColor.Green)
         {
-            Score += SCORE;
             Destroy(obj);
+            Score += SCORE;
             //Instantiate(desParticle,obj.transform);
             //StartCoroutine(Destroy(desParticle));
         }
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
         playerMotion.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
     }
-    private IEnumerator Destroy(GameObject obj)
+    private IEnumerator Destroy1(GameObject obj)
     {
         yield return new WaitForSeconds(0.4f);
         Destroy(obj);
