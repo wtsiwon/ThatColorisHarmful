@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+  
     public const int SCORE = 100;
 
     [Header("UI")]
@@ -13,18 +15,18 @@ public class GameManager : Singleton<GameManager>
     public Text scoreText;
 
     [Header("시간 변수")]
-    public float slowTime;
     public float time = 100;
+    public float minusTime;
     public int startTime = 3;
-    public bool isEnd;
     public int hp;
     public float spawnPersent;
-    public float canClick;
-    public float curtime;
+
+
 
     [Header("불리언 변수")]
     private int score;
     private int highScore;
+    public bool isEnd;
     public bool OK;
 
     [Header("Object")]
@@ -36,6 +38,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        Instance = this;
         slider = GetComponent<Slider>();
         SpawnObj();
     }
@@ -64,12 +67,11 @@ public class GameManager : Singleton<GameManager>
 
         }
 
-        
+
         if (OK)
         {
             time -= Time.deltaTime;
-           // slider.value = ;
-           
+            slider.value = minusTime / time;
         }
 
 
@@ -125,6 +127,7 @@ public class GameManager : Singleton<GameManager>
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
             obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * obj.GetComponent<Object>().dspd;
+            Invoke("Destroy", 0.3f);
             score += SCORE;
         }
     }

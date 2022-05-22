@@ -775,14 +775,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1937656003}
   scoreText: {fileID: 0}
-  slowTime: 0
-  time: 0
+  time: 100
+  minusTime: 1
   startTime: 3
-  isEnd: 0
   hp: 3
   spawnPersent: 5
-  canClick: 0
-  curtime: 0
+  isEnd: 0
   OK: 0
   pos: {fileID: 507556286}
   greenobj:
@@ -2083,7 +2081,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 40.5
+  m_Value: 40.3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
