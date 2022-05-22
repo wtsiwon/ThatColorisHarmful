@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Green
   - OtherColor
+  - Border
   layers:
   - Default
   - TransparentFX

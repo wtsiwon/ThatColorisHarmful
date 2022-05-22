@@ -7,21 +7,28 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-  
+
     public const int SCORE = 100;
 
     [Header("UI")]
     public Slider slider;
     public Text scoreText;
+    public GameObject board;
 
     [Header("시간 변수")]
+    public float limittime;
     public float time = 100;
     public float minusTime;
     public int startTime = 3;
     public int hp;
     public float spawnPersent;
+    private int activeCount = 1;
 
-
+    [Space(30f)]
+    [Header("player")]
+    public GameObject playerMotion;
+    public GameObject player;
+    public GameObject desParticle;
 
     [Header("불리언 변수")]
     private int score;
@@ -39,10 +46,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        
+
         SpawnObj();
     }
-    private void Update()
+    private void Update()//zz
     {
         switch (hp)
         {
@@ -62,20 +69,38 @@ public class GameManager : MonoBehaviour
                 hpobj[2].gameObject.SetActive(false);
                 break;
             default:
-
+                hpobj[0].gameObject.SetActive(false);
+                hpobj[1].gameObject.SetActive(false);
+                hpobj[2].gameObject.SetActive(false);
+                if (activeCount == 1)
+                {
+                    Instantiate(board, GameObject.Find("Canvas").transform);
+                    activeCount--;
+                }
                 break;
 
         }
 
-
-        if (OK)
+        if (Input.GetKeyDown(KeyCode.LeftArrow))//이거 두개인데
         {
-            time -= Time.deltaTime;
-            slider.value = minusTime / time;
+            if (SlowZone.Instance.instanceobj == null) return;
+            Next(SlowZone.Instance.instanceobj);
         }
-
-
-
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (SlowZone.Instance.instanceobj == null) return;
+            Break(SlowZone.Instance.instanceobj);
+        }
+    }
+    public IEnumerator LimitTime(float Limittime, GameObject gameObject)
+    {
+        float time = Time.time;
+        while (Time.time - time < Limittime && OK)
+        {
+            slider.value = Time.time - time;
+        }
+        gameObject.GetComponent<Object>().dspd = 10;
+        yield return null;
     }
     public int Score
     {
@@ -83,8 +108,7 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            score += SCORE;
-            scoreText.text = "Score: " + score.ToString();
+            scoreText.text = score.ToString();
         }
     }
     public int HighScore
@@ -93,9 +117,9 @@ public class GameManager : MonoBehaviour
         set
         {
             highScore = value;
-            if (highScore < score)
+            if (highScore < Score)
             {
-                highScore = score;
+                highScore = Score;
                 PlayerPrefs.SetInt("Score", highScore);
             }
         }
@@ -108,6 +132,7 @@ public class GameManager : MonoBehaviour
         {
             int randomIndex = Random.Range(0, greenobj.Count);
             GameObject a = Instantiate(greenobj[randomIndex], pos);
+            StartCoroutine(LimitTime(limittime, a));
             Debug.Assert(a != null);
         }
         else
@@ -119,33 +144,49 @@ public class GameManager : MonoBehaviour
     }
     public void Next(GameObject obj)
     {
+        if (obj == null) return;
         if (obj.GetComponent<Object>().eColor == EColor.Green)
         {
             obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
-            hp -= 1;
+            //Instantiate(desParticle, obj.transform);
+            //StartCoroutine(Destroy(desParticle));
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * (obj.GetComponent<Object>().dspd+20);
-            Invoke("Destroy", 0.1f);
-            score += SCORE;
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * (obj.GetComponent<Object>().dspd + 50);
+            Score += SCORE;
         }
-    }
-    private void Destroy()
-    {
-        Destroy(gameObject);
+
     }
     public void Break(GameObject obj)
     {
+        playerMotion.gameObject.SetActive(true);
+        player.gameObject.SetActive(false);
+        Invoke("Change", 0.2f);
+        if (obj == null) return;
         if (obj.GetComponent<Object>().eColor == EColor.Green)
         {
-            score += SCORE;
+            Score += SCORE;
             Destroy(obj);
+            //Instantiate(desParticle,obj.transform);
+            //StartCoroutine(Destroy(desParticle));
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
+            //Instantiate(desParticle, obj.transform);
+            //StartCoroutine(Destroy(desParticle));
             obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
-            hp -= 1;
         }
     }
+    public void Change()
+    {
+        playerMotion.gameObject.SetActive(false);
+        player.gameObject.SetActive(true);
+    }
+    private IEnumerator Destroy(GameObject obj)
+    {
+        yield return new WaitForSeconds(0.4f);
+        Destroy(obj);
+    }
+    
 }
