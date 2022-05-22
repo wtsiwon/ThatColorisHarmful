@@ -1405,8 +1405,6 @@ MonoBehaviour:
   SettingWindow: {fileID: 8545285631029726628, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
   StartBG: {fileID: 387884820}
   SettingTurnOnOff: 1
-  playerMotion: {fileID: 0}
-  player: {fileID: 0}
 --- !u!4 &978004209
 Transform:
   m_ObjectHideFlags: 0

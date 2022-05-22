@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 public class ResultWindow : MonoBehaviour
 {
-    [SerializeField] private Text text;
     private void Start()
     {
         gameObject.GetComponent<Transform>().DOScale(new Vector2(1, 1), 1.5f);
-        text.text = "Game Over...";
     }
 
     public void ReStart()
