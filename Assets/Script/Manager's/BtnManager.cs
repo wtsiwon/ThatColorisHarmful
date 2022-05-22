@@ -14,8 +14,7 @@ public class BtnManager : MonoBehaviour
     public GameObject SettingWindow;
     [SerializeField] private GameObject StartBG;
     public bool SettingTurnOnOff = true;
-    public GameObject playerMotion;
-    public GameObject player;
+   
     private void Awake() => Instance = this;
 
     public void PlayClick() => StartCoroutine(PlayCoroutine());
@@ -48,6 +47,7 @@ public class BtnManager : MonoBehaviour
     }
     public void Next()
     {
+        if (nextButton == null) return;
         nextButton.onClick.AddListener(() =>
         {
 
@@ -59,11 +59,9 @@ public class BtnManager : MonoBehaviour
     }
     public void Break()
     {
+        if (breakButton == null) return;
         breakButton.onClick.AddListener(() =>
         {
-            playerMotion.gameObject.SetActive(true);
-            player.gameObject.SetActive(false);
-            Invoke("Change", 0.1f);
             if (GameManager.Instance.OK)
             {
 
@@ -71,11 +69,7 @@ public class BtnManager : MonoBehaviour
             }
         });
     }
-    public void Change()
-    {
-        playerMotion.gameObject.SetActive(false);
-        player.gameObject.SetActive(true);
-    }
+    
     public void play()
     {
         Time.timeScale = 1;

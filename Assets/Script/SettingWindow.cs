@@ -36,14 +36,14 @@ public class SettingWindow : MonoBehaviour
 
     private void Start()
     {
-        Setting.GetComponent<RectTransform>().DOScale(new Vector2(1, 1), 1.5f);
+        Setting.GetComponent<RectTransform>().DOScale(new Vector2(1, 1), 0.5f);
         if (SceneManager.GetActiveScene().name == "InGame")
             StartCoroutine(TimeStop());
     }
 
     IEnumerator TimeStop()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0;
     }
 }
