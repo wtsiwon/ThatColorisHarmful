@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Slider slider;
     public Text scoreText;
     public GameObject board;
+    public GameObject board2;
 
     [Header("시간 변수")]
     public float limittime;
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
                 hpobj[2].gameObject.SetActive(false);
                 if (activeCount == 1)
                 {
+                    Instantiate(board2, GameObject.Find("Canvas").transform);
                     Instantiate(board, GameObject.Find("Canvas").transform);
                     activeCount--;
                 }
