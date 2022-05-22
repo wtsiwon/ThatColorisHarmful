@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 public class ResultWindow : MonoBehaviour
 {
     [SerializeField] private Text text;
-
     private void Start()
     {
-        text.text = "Game Over\nScore : " + string.Format("{0}", GameManager.Instance.Score.ToString("#,##0"));
+        gameObject.GetComponent<Transform>().DOScale(new Vector2(1, 1), 1.5f);
+        text.text = "Game Over...";
     }
 
     public void ReStart()
