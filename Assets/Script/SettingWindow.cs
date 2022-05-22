@@ -30,6 +30,7 @@ public class SettingWindow : MonoBehaviour
         AudioManager.Instance.EffAudioList[1].Play();
         Destroy(gameObject);
         BtnManager.Instance.SettingTurnOnOff = true;
+        BtnManager.Instance.play();
     }
 
     private void Start()

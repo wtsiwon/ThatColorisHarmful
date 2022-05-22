@@ -13,9 +13,4 @@ public class SlowZone : Singleton<SlowZone>
             GameManager.Instance.OK = true;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        instanceobj = null;
-        GameManager.Instance.OK = false;
-    }
 }

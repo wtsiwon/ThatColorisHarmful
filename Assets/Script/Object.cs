@@ -9,12 +9,12 @@ public enum EColor
 }
 public enum EObjType
 {
-   One,
-   Two,
-   Three,
-   Four,
-   Five,
-   Six,
+    One,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
 }
 public class Object : MonoBehaviour
 {
@@ -25,45 +25,55 @@ public class Object : MonoBehaviour
     private float spd;
 
 
-    
-    private void OnEnable()
+
+    private void Start()
     {
         spd = dspd;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector3.down * spd;
+        GameManager.Instance.time = 100;
     }
     //public void SetBox(EColor eColor, int index)
     //{
     //    int rndObj = Random.Range(1, 21);
     //    int rndColor = Random.Range(1, 7);
     //}
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.CompareTag("SlowZone"))
-        {
-            isSlow = true;
-            spd = 20;
-        }
-    }
+   
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
         {
+            GameManager.Instance.hp -= 1;
             Destroy(gameObject);
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
         if (collision.CompareTag("SlowZone"))
         {
-            spd = dspd;
+            isSlow = true;
+            if (GameManager.Instance.Score >= 10000000)
+            {
+                spd = 4;
+            }
+            else if (GameManager.Instance.Score >= 1000000)
+            {
+                spd = 3;
+            }
+            else if(GameManager.Instance.Score >= 100000)
+            {
+                spd = 2;
+            }
+            else
+            {
+                spd = 1;
+            }
+            rb.velocity = Vector3.down * spd;
         }
     }
     private void OnDestroy()
     {
-        if(eColor == EColor.Green)
+        if (eColor == EColor.Green)
         {
-            //¿Ã∆—∆Æ
+            CameraManager.Instance.Shake();
         }
         else
         {
@@ -71,5 +81,6 @@ public class Object : MonoBehaviour
         }
         GameManager.Instance.SpawnObj();
         GameManager.Instance.time = 0;
+
     }
 }

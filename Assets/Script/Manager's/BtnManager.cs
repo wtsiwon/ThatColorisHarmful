@@ -26,6 +26,7 @@ public class BtnManager : MonoBehaviour
             AudioManager.Instance.EffAudioList[1].Play();
             Instantiate(SettingWindow, GameObject.Find("Canvas").transform);
             SettingTurnOnOff = false;
+            Time.timeScale = 0;
         }
     }
     IEnumerator PlayCoroutine()
@@ -66,6 +67,7 @@ public class BtnManager : MonoBehaviour
             Invoke("Change", 0.1f);
             if (GameManager.Instance.OK)
             {
+
                 GameManager.Instance.Break(SlowZone.Instance.instanceobj);
             }
         });
@@ -74,10 +76,6 @@ public class BtnManager : MonoBehaviour
     {
         playerMotion.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
-    }
-    public void Pause()
-    {
-        Time.timeScale = 0;
     }
     public void play()
     {

@@ -14,22 +14,26 @@ public class GameManager : Singleton<GameManager>
 
     [Header("시간 변수")]
     public float slowTime;
-    public float time;
+    public float time = 100;
     public int startTime = 3;
     public bool isEnd;
     public int hp;
     public float spawnPersent;
+    public float canClick;
+    public float curtime;
 
+    [Header("불리언 변수")]
     private int score;
     private int highScore;
     public bool OK;
+
     [Header("Object")]
     [Space(20f)]
     public Transform pos;
     public List<GameObject> greenobj = new List<GameObject>();
     public List<GameObject> otherobj = new List<GameObject>();
-
     public List<GameObject> hpobj = new List<GameObject>(3);
+
     private void Start()
     {
         slider = GetComponent<Slider>();
@@ -55,17 +59,20 @@ public class GameManager : Singleton<GameManager>
                 hpobj[2].gameObject.SetActive(false);
                 break;
             default:
-                
+
                 break;
 
         }
-        
-        time = Time.deltaTime;
+
         
         if (OK)
         {
-            slider.value = time;
+            time -= Time.deltaTime;
+           // slider.value = ;
+           
         }
+
+
 
     }
     public int Score
@@ -75,7 +82,7 @@ public class GameManager : Singleton<GameManager>
         {
             score = value;
             score += SCORE;
-            scoreText.text = "Score: " + score.ToString(); 
+            scoreText.text = "Score: " + score.ToString();
         }
     }
     public int HighScore
@@ -93,32 +100,22 @@ public class GameManager : Singleton<GameManager>
     }
     public void SpawnObj()
     {
+        Debug.Log("안이");
         int rnd = Random.Range(0, 10);
-        if(rnd > spawnPersent)
+        if (rnd > spawnPersent)
         {
-            int ranomobj = Random.Range(0, greenobj.Count);
-            Instantiate(greenobj[ranomobj],pos);
+            int randomIndex = Random.Range(0, greenobj.Count);
+            GameObject a = Instantiate(greenobj[randomIndex], pos);
+            Debug.Assert(a != null);
         }
         else
         {
-            int randomobj = Random.Range(0, otherobj.Count);
-            Instantiate(otherobj[randomobj], pos);
+            int randomIndex = Random.Range(0, otherobj.Count);
+            Instantiate(otherobj[randomIndex], pos);
+            Debug.Assert(otherobj[randomIndex] != null);
         }
     }
     public void Next(GameObject obj)
-    {
-        if(obj.GetComponent<Object>().eColor == EColor.Green)
-        {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
-            hp -= 1;
-        }
-        else if(obj.GetComponent<Object>().eColor == EColor.Other)
-        {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * obj.GetComponent<Object>().dspd;
-            score += SCORE;
-        }
-    }
-    public void Break(GameObject obj)
     {
         if (obj.GetComponent<Object>().eColor == EColor.Green)
         {
@@ -129,6 +126,19 @@ public class GameManager : Singleton<GameManager>
         {
             obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * obj.GetComponent<Object>().dspd;
             score += SCORE;
+        }
+    }
+    public void Break(GameObject obj)
+    {
+        if (obj.GetComponent<Object>().eColor == EColor.Green)
+        {
+            score += SCORE;
+            Destroy(obj);
+        }
+        else if (obj.GetComponent<Object>().eColor == EColor.Other)
+        {
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
+            hp -= 1;
         }
     }
 }
