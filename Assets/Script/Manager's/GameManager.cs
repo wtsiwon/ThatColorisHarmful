@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        slider = GetComponent<Slider>();
+        
         SpawnObj();
     }
     private void Update()
@@ -126,10 +126,14 @@ public class GameManager : MonoBehaviour
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * obj.GetComponent<Object>().dspd;
-            Invoke("Destroy", 0.3f);
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * (obj.GetComponent<Object>().dspd+20);
+            Invoke("Destroy", 0.1f);
             score += SCORE;
         }
+    }
+    private void Destroy()
+    {
+        Destroy(gameObject);
     }
     public void Break(GameObject obj)
     {

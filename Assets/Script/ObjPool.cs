@@ -23,7 +23,7 @@ public class ObjPool : Singleton<ObjPool>
         }
         return obj;
     }
-    public Object GetObj(EColor color, EObjType eObj)
+    public Object GetObj(EColor color)
     {
         Object obj = GetObj();
         switch (color)
@@ -33,12 +33,6 @@ public class ObjPool : Singleton<ObjPool>
                 break;
             
         }//색의 종류
-        switch (eObj)
-        {
-            case EObjType.One:
-
-                break;
-        }
         return obj;
     }
     public void Return(Object obj)

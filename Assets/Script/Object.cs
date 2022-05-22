@@ -7,15 +7,6 @@ public enum EColor
     Green,
     Other
 }
-public enum EObjType
-{
-    One,
-    Two,
-    Three,
-    Four,
-    Five,
-    Six,
-}
 public class Object : MonoBehaviour
 {
     private Rigidbody2D rb;
@@ -23,7 +14,6 @@ public class Object : MonoBehaviour
     public EColor eColor;
     public float dspd;
     private float spd;
-
 
 
     private void Start()
