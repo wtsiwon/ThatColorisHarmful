@@ -662,6 +662,7 @@ GameObject:
   - component: {fileID: 956822070}
   - component: {fileID: 956822071}
   - component: {fileID: 956822072}
+  - component: {fileID: 956822073}
   m_Layer: 0
   m_Name: Checkbox
   m_TagString: SlowZone
@@ -730,6 +731,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &956822073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956822069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1200d6abbed32944d86df6882df31dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instanceobj: {fileID: 0}
 --- !u!1 &1011127328
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +782,7 @@ MonoBehaviour:
   hp: 3
   spawnPersent: 5
   canClick: 0
+  curtime: 0
   OK: 0
   pos: {fileID: 507556286}
   greenobj:

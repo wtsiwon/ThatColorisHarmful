@@ -26,7 +26,6 @@ public class BtnManager : MonoBehaviour
             AudioManager.Instance.EffAudioList[1].Play();
             Instantiate(SettingWindow, GameObject.Find("Canvas").transform);
             SettingTurnOnOff = false;
-            Time.timeScale = 0;
         }
     }
     IEnumerator PlayCoroutine()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class SettingWindow : MonoBehaviour
 {
     [SerializeField] private GameObject Setting;
@@ -36,5 +37,13 @@ public class SettingWindow : MonoBehaviour
     private void Start()
     {
         Setting.GetComponent<RectTransform>().DOScale(new Vector2(1, 1), 1.5f);
+        if (SceneManager.GetActiveScene().name == "InGame")
+            StartCoroutine(TimeStop());
+    }
+
+    IEnumerator TimeStop()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Time.timeScale = 0;
     }
 }
