@@ -11,7 +11,7 @@ public class Credit : MonoBehaviour
     private void Start() => StartCoroutine(StartCredit());
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
             SceneManager.LoadScene("Title");
     }
     IEnumerator StartCredit()

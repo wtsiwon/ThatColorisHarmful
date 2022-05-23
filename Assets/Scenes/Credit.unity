@@ -258,7 +258,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
@@ -268,8 +268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0B5\uC744 \uD558\uC2DC\uB824\uBA74\n\uC2A4\uD398\uC774\uC2A4\uBC14\uB97C
-    \uB20C\uB7EC\uC8FC\uC138\uC694"
+  m_Text: "\uC2A4\uD0B5\uC744 \uD558\uC2DC\uB824\uBA74\n\uD654\uBA74\uC744 \uB20C\uB7EC\uC8FC\uC138\uC694"
 --- !u!222 &1289341792
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -289,6 +288,7 @@ GameObject:
   - component: {fileID: 1316659310}
   - component: {fileID: 1316659309}
   - component: {fileID: 1316659308}
+  - component: {fileID: 1316659311}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -361,6 +361,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1316659311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316659307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0266f335bebb23469583b62c2887d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1464897005
 GameObject:
   m_ObjectHideFlags: 0
