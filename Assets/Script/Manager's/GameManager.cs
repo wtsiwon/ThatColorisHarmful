@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public Slider slider;
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
     public GameObject board;
     public GameObject board2;
 
