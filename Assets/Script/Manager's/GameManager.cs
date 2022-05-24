@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public int startTime = 3;
     public int hp;
     public float spawnPersent;
-    public bool isSpawn;//스폰을 하는가?
     private int activeCount = 1;
 
     [Space(30f)]
@@ -35,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     [Header("불리언 변수")]
     private int score;
-    private int highScore;
+    public int highScore;
     public bool isEnd;
     public bool OK;
 
@@ -46,10 +45,10 @@ public class GameManager : MonoBehaviour
     public List<GameObject> otherobj = new List<GameObject>();
     public List<GameObject> hpobj = new List<GameObject>(3);
 
-    private void OnEnable()
+    private void Start()
     {
         Instance = this;
-        isSpawn = true;
+        highScore = PlayerPrefs.GetInt("Score");
         SpawnObj();
     }
     private void Update()//zz
@@ -77,8 +76,16 @@ public class GameManager : MonoBehaviour
                 hpobj[2].gameObject.SetActive(false);
                 if (activeCount == 1)
                 {
+                    AudioManager.Instance.AudioList[1].Stop();
+                    AudioManager.Instance.EffAudioList[5].Play();
                     Instantiate(board2, GameObject.Find("Canvas").transform);
                     Instantiate(board, GameObject.Find("Canvas").transform);
+                    if (highScore < Score)
+                    {
+                        AudioManager.Instance.EffAudioList[6].Play();
+                        highScore = Score;
+                        PlayerPrefs.SetInt("Score", highScore);
+                    }
                     activeCount--;
                 }
                 break;
@@ -115,19 +122,6 @@ public class GameManager : MonoBehaviour
             scoreText.text = score.ToString();
         }
     }
-    public int HighScore
-    {
-        get => highScore;
-        set
-        {
-            highScore = value;
-            if (highScore < Score)
-            {
-                highScore = Score;
-                PlayerPrefs.SetInt("Score", highScore);
-            }
-        }
-    }
     public void SpawnObj()
     {
         Debug.Log("안이");
@@ -151,17 +145,15 @@ public class GameManager : MonoBehaviour
         if (obj == null) return;
         if (obj.GetComponent<Object>().eColor == EColor.Green)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * obj.GetComponent<Object>().dspd;
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
             //Instantiate(desParticle, obj.transform);
             //StartCoroutine(Destroy(desParticle));
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector2.left * (obj.GetComponent<Object>().dspd + 50);
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * (obj.GetComponent<Object>().dspd + 50);
             Score += SCORE;
         }
-        SpawnObj();
-        OK = false;
 
     }
     public void Break(GameObject obj)
@@ -176,16 +168,13 @@ public class GameManager : MonoBehaviour
             Score += SCORE;
             //Instantiate(desParticle,obj.transform);
             //StartCoroutine(Destroy(desParticle));
-            
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
             //Instantiate(desParticle, obj.transform);
             //StartCoroutine(Destroy(desParticle));
-            obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * obj.GetComponent<Object>().dspd;
+            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
         }
-        SpawnObj();
-        OK = false;
     }
     public void Change()
     {

@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour  where T:  MonoBehaviour
+public class Singleton<T> : MonoBehaviour where T:  MonoBehaviour
 {
-    public static T Instance { get; private set; }
-
-    private void Awake()
+    public static T Instance = null;
+   
+    protected virtual void Awake()
     {
-        Instance = GetComponent<T>();
-        var obj = FindObjectsOfType<T>();
-        if (obj.Length == 1)
-            DontDestroyOnLoad(gameObject);
+        T t;
+        t = FindObjectOfType(typeof(T)) as T;
+        if (Instance == null)
+        {
+            Instance = t;
+            DontDestroyOnLoad(t.gameObject);
+        }
         else
-            Destroy(gameObject);
-    }
-    private void OnDestroy()
-    {
-        Instance = null;
+        {
+            if (Instance != t)
+                Destroy(t.gameObject);
+        }
     }
 }
