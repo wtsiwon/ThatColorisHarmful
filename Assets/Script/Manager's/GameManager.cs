@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     [Header("불리언 변수")]
     private int score;
-    private int highScore;
+    public int highScore;
     public bool isEnd;
     public bool OK;
 
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-
+        highScore = PlayerPrefs.GetInt("Score");
         SpawnObj();
     }
     private void Update()//zz
@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
                 {
                     Instantiate(board2, GameObject.Find("Canvas").transform);
                     Instantiate(board, GameObject.Find("Canvas").transform);
+                    if (highScore < Score)
+                    {
+                        highScore = Score;
+                        PlayerPrefs.SetInt("Score", highScore);
+                    }
                     activeCount--;
                 }
                 break;
@@ -112,19 +117,6 @@ public class GameManager : MonoBehaviour
         {
             score = value;
             scoreText.text = score.ToString();
-        }
-    }
-    public int HighScore
-    {
-        get => highScore;
-        set
-        {
-            highScore = value;
-            if (highScore < Score)
-            {
-                highScore = Score;
-                PlayerPrefs.SetInt("Score", highScore);
-            }
         }
     }
     public void SpawnObj()
