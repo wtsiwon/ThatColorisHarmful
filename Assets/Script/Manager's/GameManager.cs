@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int startTime = 3;
     public int hp;
     public float spawnPersent;
+    public bool isSpawn;//스폰을 하는가?
     private int activeCount = 1;
 
     [Space(30f)]
@@ -45,10 +46,10 @@ public class GameManager : MonoBehaviour
     public List<GameObject> otherobj = new List<GameObject>();
     public List<GameObject> hpobj = new List<GameObject>(3);
 
-    private void Start()
+    private void OnEnable()
     {
         Instance = this;
-
+        isSpawn = true;
         SpawnObj();
     }
     private void Update()//zz
@@ -150,15 +151,17 @@ public class GameManager : MonoBehaviour
         if (obj == null) return;
         if (obj.GetComponent<Object>().eColor == EColor.Green)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
+            obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * obj.GetComponent<Object>().dspd;
             //Instantiate(desParticle, obj.transform);
             //StartCoroutine(Destroy(desParticle));
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * (obj.GetComponent<Object>().dspd + 50);
+            obj.GetComponent<Rigidbody2D>().velocity = Vector2.left * (obj.GetComponent<Object>().dspd + 50);
             Score += SCORE;
         }
+        SpawnObj();
+        OK = false;
 
     }
     public void Break(GameObject obj)
@@ -173,13 +176,16 @@ public class GameManager : MonoBehaviour
             Score += SCORE;
             //Instantiate(desParticle,obj.transform);
             //StartCoroutine(Destroy(desParticle));
+            
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
             //Instantiate(desParticle, obj.transform);
             //StartCoroutine(Destroy(desParticle));
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
+            obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * obj.GetComponent<Object>().dspd;
         }
+        SpawnObj();
+        OK = false;
     }
     public void Change()
     {

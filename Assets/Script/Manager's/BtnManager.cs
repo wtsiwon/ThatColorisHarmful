@@ -15,7 +15,7 @@ public class BtnManager : MonoBehaviour
     [SerializeField] private GameObject StartBG;
     public bool SettingTurnOnOff = true;
    
-    private void Awake() => Instance = this;
+    private void OnEnable() => Instance = this;
 
     public void PlayClick() => StartCoroutine(PlayCoroutine());
     public void SettingClick()
@@ -54,6 +54,7 @@ public class BtnManager : MonoBehaviour
             if (GameManager.Instance.OK)
             {
                 GameManager.Instance.Next(SlowZone.Instance.instanceobj);
+                
             }
         });
     }
@@ -64,8 +65,8 @@ public class BtnManager : MonoBehaviour
         {
             if (GameManager.Instance.OK)
             {
-
                 GameManager.Instance.Break(SlowZone.Instance.instanceobj);
+                
             }
         });
     }

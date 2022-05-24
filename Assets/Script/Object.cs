@@ -20,7 +20,7 @@ public class Object : MonoBehaviour
     {
         spd = dspd;
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.down * spd;
+        rb.velocity = Vector2.down * spd;
         GameManager.Instance.time = 100;
     }
     //public void SetBox(EColor eColor, int index)
@@ -34,7 +34,6 @@ public class Object : MonoBehaviour
     {
         if (collision == null)
         {
-            Debug.Assert(collision != null);
             Debug.Log(collision);
             return;//아니 아무것도 하지 말고 리턴하라고 야발련아
         }
@@ -90,7 +89,7 @@ public class Object : MonoBehaviour
         {
             //꺼지셈
         }
-        GameManager.Instance.SpawnObj();
+        
         GameManager.Instance.time = 0;
     }
 }
