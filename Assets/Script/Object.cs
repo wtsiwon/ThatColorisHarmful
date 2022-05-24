@@ -87,9 +87,9 @@ public class Object : MonoBehaviour
         }
         else
         {
-            //²¨Áö¼À
+            
         }
-        
+        GameManager.Instance.SpawnObj();
         GameManager.Instance.time = 0;
     }
 }
