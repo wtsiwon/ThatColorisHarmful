@@ -15,13 +15,15 @@ public class Object : MonoBehaviour
     public float dspd;
     private float spd;
 
-
-    private void Start()
+    private void Awake()
     {
         spd = dspd;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * spd;
         GameManager.Instance.time = 100;
+    }
+    private void Start()
+    {
     }
     //public void SetBox(EColor eColor, int index)
     //{
@@ -52,7 +54,7 @@ public class Object : MonoBehaviour
         }
         if (collision.CompareTag("SlowZone"))
         {
-            
+            GameManager.Instance.OK = true;
             isSlow = true;
             if (GameManager.Instance.Score >= 1000000)
             {
@@ -76,7 +78,10 @@ public class Object : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GameManager.Instance.OK = false;
+        if (collision.CompareTag("SlowZone"))
+        {
+            GameManager.Instance.OK = false;
+        }
     }
 
     private void OnDestroy()
@@ -87,7 +92,7 @@ public class Object : MonoBehaviour
         }
         else
         {
-            
+
         }
         GameManager.Instance.SpawnObj();
         GameManager.Instance.time = 0;

@@ -635,6 +635,7 @@ MonoBehaviour:
   SettingWindow: {fileID: 8545285631029726628, guid: 734e59d30cef7d6429ef2fd1362c9007, type: 3}
   StartBG: {fileID: 0}
   SettingTurnOnOff: 1
+  PlayOnOff: 0
 --- !u!4 &846472765
 Transform:
   m_ObjectHideFlags: 0
@@ -781,7 +782,6 @@ MonoBehaviour:
   startTime: 3
   hp: 3
   spawnPersent: 5
-  isSpawn: 0
   playerMotion: {fileID: 1881198255}
   player: {fileID: 580553983}
   desParticle: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 3}

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("시간 변수")]
     public float limittime;
-    public float time = 100;
+    public float time = 5;
     public float minusTime;
     public int startTime = 3;
     public int hp;
@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
     }
     private void Update()//zz
     {
+        if (OK)
+        {
+            time -= Time.deltaTime;
+        }
+
         switch (hp)
         {
             case 3:
@@ -92,12 +97,12 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))//이거 두개인데
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && OK)//이거 두개인데
         {
             if (SlowZone.Instance.instanceobj == null) return;
             Next(SlowZone.Instance.instanceobj);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow)&& OK)
         {
             if (SlowZone.Instance.instanceobj == null) return;
             Break(SlowZone.Instance.instanceobj);
@@ -145,15 +150,14 @@ public class GameManager : MonoBehaviour
         if (obj == null) return;
         if (obj.GetComponent<Object>().eColor == EColor.Green)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
-            //Instantiate(desParticle, obj.transform);
-            //StartCoroutine(Destroy(desParticle));
+            obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * obj.GetComponent<Object>().dspd;
         }
         else if (obj.GetComponent<Object>().eColor == EColor.Other)
         {
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.left * (obj.GetComponent<Object>().dspd + 50);
+            obj.GetComponent<Rigidbody2D>().velocity = Vector2.left * (obj.GetComponent<Object>().dspd + 50);
             Score += SCORE;
         }
+        OK = false;
 
     }
     public void Break(GameObject obj)
@@ -173,7 +177,7 @@ public class GameManager : MonoBehaviour
         {
             //Instantiate(desParticle, obj.transform);
             //StartCoroutine(Destroy(desParticle));
-            obj.GetComponent<Rigidbody2D>().velocity = Vector3.down * obj.GetComponent<Object>().dspd;
+            obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * obj.GetComponent<Object>().dspd;
         }
     }
     public void Change()
@@ -186,5 +190,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         Destroy(obj);
     }
-    
+
 }
