@@ -20,7 +20,7 @@ public class Object : MonoBehaviour
     {
         spd = dspd;
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.down * spd;
+        rb.velocity = Vector2.down * spd;
         GameManager.Instance.time = 100;
     }
     //public void SetBox(EColor eColor, int index)
