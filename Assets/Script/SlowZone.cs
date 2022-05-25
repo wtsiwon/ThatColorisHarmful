@@ -10,7 +10,7 @@ public class SlowZone : Singleton<SlowZone>
         if(collision.CompareTag("Green") || collision.CompareTag("OtherColor"))
         {
             instanceobj = collision.gameObject;
-            GameManager.Instance.OK = true;
+            collision.GetComponent<Obj>().isCan = true;
         }
     }
 }

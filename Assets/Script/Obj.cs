@@ -7,12 +7,12 @@ public enum EColor
     Green,
     Other
 }
-public class Object : MonoBehaviour
+public class Obj : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public bool isSlow;
     public EColor eColor;
     public float dspd;
+    public bool isCan;
     private float spd;
 
 
@@ -52,8 +52,6 @@ public class Object : MonoBehaviour
         }
         if (collision.CompareTag("SlowZone"))
         {
-            
-            isSlow = true;
             if (GameManager.Instance.Score >= 1000000)
             {
                 spd = 4;
@@ -70,26 +68,15 @@ public class Object : MonoBehaviour
             {
                 spd = 1;
             }
-
             rb.velocity = Vector2.down * spd;//??? 어떨땐 나고 불규칙적인 오류..
         }
     }
+    public bool IsCheckColor(Obj obj)
+    {
+        return obj.Equals(rb);
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GameManager.Instance.OK = false;
-    }
-
-    private void OnDestroy()
-    {
-        if (eColor == EColor.Green)
-        {
-            CameraManager.Instance.Shake();
-        }
-        else
-        {
-            
-        }
-        GameManager.Instance.SpawnObj();
-        GameManager.Instance.time = 0;
+        isCan = false;
     }
 }

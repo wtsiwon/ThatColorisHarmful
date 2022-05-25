@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ObjPool : Singleton<ObjPool>
 {
-    Object poolObj;
+    Obj poolObj;
 
-    private Queue<Object> pool = new Queue<Object>();
+    private Queue<Obj> pool = new Queue<Obj>();
 
-    public Object GetObj()
+    public Obj GetObj()
     {
-        Object obj = null;
+        Obj obj = null;
 
         if (pool.Count > 0)
         {
@@ -23,9 +23,9 @@ public class ObjPool : Singleton<ObjPool>
         }
         return obj;
     }
-    public Object GetObj(EColor color)
+    public Obj GetObj(EColor color)
     {
-        Object obj = GetObj();
+        Obj obj = GetObj();
         switch (color)
         {
             case EColor.Green:
@@ -35,7 +35,7 @@ public class ObjPool : Singleton<ObjPool>
         }//색의 종류
         return obj;
     }
-    public void Return(Object obj)
+    public void Return(Obj obj)
     {
         pool.Enqueue(obj);
         obj.gameObject.SetActive(false);

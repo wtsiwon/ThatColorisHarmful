@@ -57,11 +57,7 @@ public class BtnManager : MonoBehaviour
         if (nextButton == null) return;
         nextButton.onClick.AddListener(() =>
         {
-
-            if (GameManager.Instance.OK)
-            {
-                GameManager.Instance.Next(SlowZone.Instance.instanceobj);
-            }
+            GameManager.Instance.Next(SlowZone.Instance.instanceobj);
         });
     }
     public void Break()
@@ -69,11 +65,7 @@ public class BtnManager : MonoBehaviour
         if (breakButton == null) return;
         breakButton.onClick.AddListener(() =>
         {
-            if (GameManager.Instance.OK)
-            {
-
-                GameManager.Instance.Break(SlowZone.Instance.instanceobj);
-            }
+            GameManager.Instance.Break(SlowZone.Instance.instanceobj);
         });
     }
 
