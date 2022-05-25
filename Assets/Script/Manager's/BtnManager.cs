@@ -43,11 +43,11 @@ public class BtnManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && GameManager.Instance.OK)
         {
             Next();
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && GameManager.Instance.OK)
         {
             Break();
         }
