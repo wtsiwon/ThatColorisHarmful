@@ -76,10 +76,13 @@ public class GameManager : MonoBehaviour
                 hpobj[2].gameObject.SetActive(false);
                 if (activeCount == 1)
                 {
+                    AudioManager.Instance.AudioList[1].Stop();
+                    AudioManager.Instance.EffAudioList[5].Play();
                     Instantiate(board2, GameObject.Find("Canvas").transform);
                     Instantiate(board, GameObject.Find("Canvas").transform);
                     if (highScore < Score)
                     {
+                        AudioManager.Instance.EffAudioList[6].Play();
                         highScore = Score;
                         PlayerPrefs.SetInt("Score", highScore);
                     }

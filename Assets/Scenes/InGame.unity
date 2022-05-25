@@ -676,7 +676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956822069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 2, z: -1.2052118}
+  m_LocalPosition: {x: 0.02, y: 2.43, z: -1.2052118}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -695,7 +695,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.01818806, y: 0.41226405}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -706,7 +706,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 0.67833006, y: 0.1754719}
   m_EdgeRadius: 0
 --- !u!50 &956822072
 Rigidbody2D:
@@ -781,6 +781,7 @@ MonoBehaviour:
   startTime: 3
   hp: 3
   spawnPersent: 5
+  isSpawn: 0
   playerMotion: {fileID: 1881198255}
   player: {fileID: 580553983}
   desParticle: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 3}

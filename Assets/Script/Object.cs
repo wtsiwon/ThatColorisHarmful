@@ -34,7 +34,6 @@ public class Object : MonoBehaviour
     {
         if (collision == null)
         {
-            Debug.Assert(collision != null);
             Debug.Log(collision);
             return;//아니 아무것도 하지 말고 리턴하라고 야발련아
         }
@@ -88,7 +87,7 @@ public class Object : MonoBehaviour
         }
         else
         {
-            //꺼지셈
+            
         }
         GameManager.Instance.SpawnObj();
         GameManager.Instance.time = 0;

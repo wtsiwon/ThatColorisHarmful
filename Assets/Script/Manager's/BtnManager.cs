@@ -13,11 +13,18 @@ public class BtnManager : MonoBehaviour
     public Button pauseButton;
     public GameObject SettingWindow;
     [SerializeField] private GameObject StartBG;
-    public bool SettingTurnOnOff = true;
-   
+    public bool SettingTurnOnOff = true, PlayOnOff = false;
+
     private void Awake() => Instance = this;
 
-    public void PlayClick() => StartCoroutine(PlayCoroutine());
+    public void PlayClick()
+    {
+        if (PlayOnOff == false)
+        {
+            PlayOnOff = true;
+            StartCoroutine(PlayCoroutine());
+        }
+    }
     public void SettingClick()
     {
         if (SettingTurnOnOff == true)
@@ -69,7 +76,7 @@ public class BtnManager : MonoBehaviour
             }
         });
     }
-    
+
     public void play()
     {
         Time.timeScale = 1;
