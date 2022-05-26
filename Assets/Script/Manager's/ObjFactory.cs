@@ -6,9 +6,9 @@ public class ObjFactory : AbsObjFactory
 {
     [Header("Obj")]
     [SerializeField]
-    private GreenObj[] greenObj;
+    private List<GreenObj> greenObj = new List<GreenObj>();
     [SerializeField]
-    private OtherObj[] otherObj;
+    private List<OtherObj> otherObj = new List<OtherObj>();
 
     /// <summary>
     /// 색깔과 포지션을 받아 오브젝트를 알맞은 위치에 소환시켜줌
@@ -42,11 +42,11 @@ public class ObjFactory : AbsObjFactory
         int rnd = 0;
         if (eColor == EColor.Green)
         {
-            rnd = Random.Range(0, greenObj.Length);
+            rnd = Random.Range(0, greenObj.Count);
         }
         else if(eColor == EColor.Other)
         {
-            rnd = Random.Range(0, otherObj.Length);
+            rnd = Random.Range(0, otherObj.Count);
         }
         return rnd;
     }

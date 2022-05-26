@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SlowZone : Singleton<SlowZone>
 {
-    public GameObject instanceobj;
+    public Obj instanceobj;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var Obj = collision.GetComponent<Obj>();
         if(collision.CompareTag("Green") || collision.CompareTag("OtherColor"))
         {
-            instanceobj = collision.gameObject;
+            instanceobj = Obj;
             Obj.isCan = true;
         }
     }

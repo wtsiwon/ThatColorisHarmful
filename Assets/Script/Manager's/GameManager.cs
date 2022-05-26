@@ -31,6 +31,7 @@ public class GameManager : Single<GameManager>
     public GameObject playerMotion;
     public GameObject player;
     public GameObject desParticle;
+    private AbsObjFactory factory;
 
     public int highScore;
     private int score;
@@ -45,9 +46,14 @@ public class GameManager : Single<GameManager>
     public List<GameObject> otherobj = new List<GameObject>();
     public List<GameObject> hpobj = new List<GameObject>(3);
 
+    private void Start()
+    {
+        factory = FindObjectOfType<ObjFactory>();
+        RandomSpawnObj();
+
+    }
     private void OnEnable()
     {
-        RandomSpawnObj();
         activeCount = 1;
         highScore = PlayerPrefs.GetInt("Score");
     }
@@ -91,7 +97,6 @@ public class GameManager : Single<GameManager>
                     activeCount--;
                 }
                 break;
-
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))//이거 두개인데
@@ -127,60 +132,63 @@ public class GameManager : Single<GameManager>
     
     public void RandomSpawnObj()
     {
-        AbsObjFactory factory = new ObjFactory();
-        factory.CreateObj((EColor)Random.Range(0,2), pos.transform.position);
+        EColor color = (EColor)Random.Range(0, 2);
+        factory.CreateObj(color, pos.transform.position);
     }
     /// <summary>
     /// 떨어지는 오브젝트를 옆으로 넘기는 함수
     /// </summary>
     /// <param name="obj">떨어지는 오브젝트</param>
-    public void Next(GameObject obj)
+    public void Next(Obj obj)
     {
-        
-        var getObj = obj.GetComponent<Obj>();
         Vector2 dir = new Vector2();
         int speed = 0;
 
-        if (obj == null || getObj.isCan == false) return;
+        if (obj == null || obj.isCan == false) return;
 
-        if (getObj.eColor == EColor.Green)
+        if (obj.eColor == EColor.Green)
         {
             dir = Vector2.down;
+            RandomSpawnObj();
             speed = 0;
         }
-        else if (getObj.eColor == EColor.Other)
+        else if (obj.eColor == EColor.Other)
         {
             dir = Vector2.left;
             speed = 50;
             Score += SCORE;
+            RandomSpawnObj();
         }
 
-        obj.GetComponent<Rigidbody2D>().velocity = dir * (getObj.dspd + speed);
+        obj.GetComponent<Rigidbody2D>().velocity = dir * (obj.dspd + speed);
     }
     /// <summary>
     /// 떨어지는 오브젝트 부시는 함수
     /// </summary>
-    /// <param name="obj"></param>
-    public void Break(GameObject obj)
+    /// <param name="obj">Collider에 닿은 것</param>
+    public void Break(Obj obj)
     { 
-        var getObj = obj.GetComponent<Obj>();
+        
         Vector2 dir = new Vector2();
         #region 부실때 애니메이션
         playerMotion.gameObject.SetActive(true);
         player.gameObject.SetActive(false);
         Invoke(nameof(Change), 0.2f);
         #endregion
-        if (obj == null || getObj.isCan == false) return;
-        if (getObj.eColor == EColor.Green && getObj.isCan)
+        if (obj == null || obj.isCan == false) return;
+        if (obj.eColor == EColor.Green && obj.isCan)
         {
             CameraManager.Instance.Shake();
-            Destroy(obj);
             Score += SCORE;
+            obj.isCan = false;
+            RandomSpawnObj();
+            Destroy(obj);
         }
-        else if (getObj.eColor == EColor.Other && getObj.isCan)
+        else if (obj.eColor == EColor.Other && obj.isCan)
         {
             dir = Vector2.left;
-            getObj.isCan = false;
+            RandomSpawnObj();
+            obj.isCan = false;
         }
 
 
