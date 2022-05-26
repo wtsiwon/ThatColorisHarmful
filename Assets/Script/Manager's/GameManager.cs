@@ -8,21 +8,23 @@ using TMPro;
 public class GameManager : Single<GameManager>
 {
     public const int SCORE = 100;
-
+    #region UI변수
     [Header("UI")]
     public Slider slider;
     public TextMeshProUGUI scoreText;
     public GameObject board;
     public GameObject board2;
-
+    public int hp;
+    #endregion
+    #region 시간 변수
     [Header("시간 변수")]
     public float limittime;
     public float time = 100;
     public float minusTime;
     public int startTime = 3;
-    public int hp;
     public float spawnPersent;
     private int activeCount = 1;
+    #endregion
 
     [Space(30f)]
     [Header("player")]
@@ -30,14 +32,14 @@ public class GameManager : Single<GameManager>
     public GameObject player;
     public GameObject desParticle;
 
-    [Header("불리언 변수")]
-    private int score;
     public int highScore;
+    private int score;
+
+    [Header("불리언 변수")]
     public bool isEnd;
 
-
-    [Header("Object")]
     [Space(20f)]
+    [Header("Object")]
     public Transform pos;
     public List<GameObject> greenobj = new List<GameObject>();
     public List<GameObject> otherobj = new List<GameObject>();
@@ -45,6 +47,7 @@ public class GameManager : Single<GameManager>
 
     private void OnEnable()
     {
+        RandomSpawnObj();
         activeCount = 1;
         highScore = PlayerPrefs.GetInt("Score");
     }
@@ -52,6 +55,7 @@ public class GameManager : Single<GameManager>
     {
         switch (hp)
         {
+        #region Hp UI 껏다 켯다하기
             case 3:
                 hpobj[0].gameObject.SetActive(true);
                 hpobj[1].gameObject.SetActive(true);
@@ -71,6 +75,7 @@ public class GameManager : Single<GameManager>
                 hpobj[0].gameObject.SetActive(false);
                 hpobj[1].gameObject.SetActive(false);
                 hpobj[2].gameObject.SetActive(false);
+                #endregion
                 if (activeCount == 1)
                 {
                     AudioManager.Instance.AudioList[1].Stop();
@@ -119,10 +124,11 @@ public class GameManager : Single<GameManager>
             scoreText.text = score.ToString();
         }
     }
-    public void RandomSpawnObj(int index)
+    
+    public void RandomSpawnObj()
     {
         AbsObjFactory factory = new ObjFactory();
-        factory.CreateObj((EColor)Random.Range(0,2),index, pos.transform.position);
+        factory.CreateObj((EColor)Random.Range(0,2), pos.transform.position);
     }
     /// <summary>
     /// 떨어지는 오브젝트를 옆으로 넘기는 함수
@@ -156,14 +162,14 @@ public class GameManager : Single<GameManager>
     /// </summary>
     /// <param name="obj"></param>
     public void Break(GameObject obj)
-    {
+    { 
         var getObj = obj.GetComponent<Obj>();
         Vector2 dir = new Vector2();
-
+        #region 부실때 애니메이션
         playerMotion.gameObject.SetActive(true);
         player.gameObject.SetActive(false);
         Invoke(nameof(Change), 0.2f);
-
+        #endregion
         if (obj == null || getObj.isCan == false) return;
         if (getObj.eColor == EColor.Green && getObj.isCan)
         {
