@@ -47,7 +47,6 @@ public class GameManager : Single<GameManager>
     {
         activeCount = 1;
         highScore = PlayerPrefs.GetInt("Score");
-        SpawnObj();
     }
     private void Update()
     {
@@ -120,23 +119,6 @@ public class GameManager : Single<GameManager>
             scoreText.text = score.ToString();
         }
     }
-
-    public void SpawnObj()
-    {
-        Debug.Log("안이");
-        int rnd = Random.Range(0, 10);
-        if (rnd > spawnPersent)
-        {
-            int randomIndex = Random.Range(0, greenobj.Count);
-            Instantiate(greenobj[randomIndex], pos);
-
-        }
-        else
-        {
-            int randomIndex = Random.Range(0, otherobj.Count);
-            Instantiate(otherobj[randomIndex], pos);
-        }
-    }
     /// <summary>
     /// 떨어지는 오브젝트를 옆으로 넘기는 함수
     /// </summary>
@@ -147,7 +129,7 @@ public class GameManager : Single<GameManager>
         Vector2 dir = new Vector2();
         int speed = 0;
 
-        if (obj == null && getObj.isCan == false) return;
+        if (obj == null || getObj.isCan == false) return;
 
         if (getObj.eColor == EColor.Green)
         {
@@ -163,6 +145,10 @@ public class GameManager : Single<GameManager>
 
         obj.GetComponent<Rigidbody2D>().velocity = dir * (getObj.dspd + speed);
     }
+    /// <summary>
+    /// 떨어지는 오브젝트 부시는 함수
+    /// </summary>
+    /// <param name="obj"></param>
     public void Break(GameObject obj)
     {
         var getObj = obj.GetComponent<Obj>();
@@ -172,7 +158,7 @@ public class GameManager : Single<GameManager>
         player.gameObject.SetActive(false);
         Invoke(nameof(Change), 0.2f);
 
-        if (obj == null && getObj.isCan == false) return;
+        if (obj == null || getObj.isCan == false) return;
         if (getObj.eColor == EColor.Green)
         {
             CameraManager.Instance.Shake();
@@ -187,6 +173,9 @@ public class GameManager : Single<GameManager>
         
 
     }
+    /// <summary>
+    /// 부시는 애니메이션
+    /// </summary>
     public void Change()
     {
         playerMotion.gameObject.SetActive(false);

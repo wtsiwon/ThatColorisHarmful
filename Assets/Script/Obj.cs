@@ -71,12 +71,9 @@ public class Obj : MonoBehaviour
             rb.velocity = Vector2.down * spd;//??? 어떨땐 나고 불규칙적인 오류..
         }
     }
-    public bool IsCheckColor(Obj obj)
+    public bool IsCheckGreen(Obj obj)
     {
-        return obj.Equals(rb);
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        isCan = false;
+        if (obj.eColor == EColor.Green) return true;
+        else return false;
     }
 }

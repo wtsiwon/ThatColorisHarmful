@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-public class BtnManager : MonoBehaviour
+public class BtnManager : Single<BtnManager>//dontDestroy¾ø´Â ½Ì±ÛÅæ
 {
-    public static BtnManager Instance { get; set; }
+    
 
     public Button breakButton;
     public Button nextButton;
@@ -15,7 +15,11 @@ public class BtnManager : MonoBehaviour
     [SerializeField] private GameObject StartBG;
     public bool SettingTurnOnOff = true, PlayOnOff = false;
 
-    private void Awake() => Instance = this;
+    private void Awake() 
+    {
+        
+    }
+
 
     public void PlayClick()
     {
@@ -43,11 +47,11 @@ public class BtnManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && GameManager.Instance.OK)
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Next();
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && GameManager.Instance.OK)
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Break();
         }

@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class ObjFactory : AbsObjFactory 
+public class ObjFactory : AbsObjFactory 
 {
     [Header("Obj")]
     [SerializeField]
     private GreenObj[] greenObj;
+    [SerializeField]
     private OtherObj[] otherObj;
 
     public override Obj CreateObj(EColor eColor, int index, Vector3 pos)
