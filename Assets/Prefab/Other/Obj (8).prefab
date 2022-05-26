@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 381417497624555196}
   - component: {fileID: -58071324283469878}
   - component: {fileID: -2324760406022649787}
-  - component: {fileID: 8566962994889531445}
+  - component: {fileID: 4840534963437675598}
   m_Layer: 0
   m_Name: Obj (8)
   m_TagString: OtherColor
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8566962994889531445
+--- !u!114 &4840534963437675598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 381417497624555194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0a02e8a0abf5f42997a221d3ef7942, type: 3}
+  m_Script: {fileID: 11500000, guid: 668ca8d709ba0654da000e1ba6120968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eColor: 1

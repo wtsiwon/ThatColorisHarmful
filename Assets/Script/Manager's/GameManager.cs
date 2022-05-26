@@ -119,12 +119,18 @@ public class GameManager : Single<GameManager>
             scoreText.text = score.ToString();
         }
     }
+    public void RandomSpawnObj(int index)
+    {
+        AbsObjFactory factory = new ObjFactory();
+        factory.CreateObj((EColor)Random.Range(0,2),index, pos.transform.position);
+    }
     /// <summary>
     /// 떨어지는 오브젝트를 옆으로 넘기는 함수
     /// </summary>
     /// <param name="obj">떨어지는 오브젝트</param>
     public void Next(GameObject obj)
     {
+        
         var getObj = obj.GetComponent<Obj>();
         Vector2 dir = new Vector2();
         int speed = 0;
@@ -159,18 +165,18 @@ public class GameManager : Single<GameManager>
         Invoke(nameof(Change), 0.2f);
 
         if (obj == null || getObj.isCan == false) return;
-        if (getObj.eColor == EColor.Green)
+        if (getObj.eColor == EColor.Green && getObj.isCan)
         {
             CameraManager.Instance.Shake();
             Destroy(obj);
             Score += SCORE;
         }
-        else if (getObj.eColor == EColor.Other)
+        else if (getObj.eColor == EColor.Other && getObj.isCan)
         {
             dir = Vector2.left;
             getObj.isCan = false;
         }
-        
+
 
     }
     /// <summary>
