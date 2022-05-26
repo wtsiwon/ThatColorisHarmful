@@ -50,7 +50,6 @@ public class GameManager : Single<GameManager>
     {
         factory = FindObjectOfType<ObjFactory>();
         RandomSpawnObj();
-
     }
     private void OnEnable()
     {
@@ -155,9 +154,9 @@ public class GameManager : Single<GameManager>
         else if (obj.eColor == EColor.Other)
         {
             dir = Vector2.left;
-            speed = 50;
             Score += SCORE;
             RandomSpawnObj();
+            speed = 50;
         }
 
         obj.GetComponent<Rigidbody2D>().velocity = dir * (obj.dspd + speed);
@@ -168,7 +167,6 @@ public class GameManager : Single<GameManager>
     /// <param name="obj">Collider에 닿은 것</param>
     public void Break(Obj obj)
     { 
-        
         Vector2 dir = new Vector2();
         #region 부실때 애니메이션
         playerMotion.gameObject.SetActive(true);
@@ -181,8 +179,8 @@ public class GameManager : Single<GameManager>
             CameraManager.Instance.Shake();
             Score += SCORE;
             obj.isCan = false;
-            RandomSpawnObj();
             Destroy(obj);
+            RandomSpawnObj();
         }
         else if (obj.eColor == EColor.Other && obj.isCan)
         {
