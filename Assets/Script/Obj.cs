@@ -23,13 +23,6 @@ public class Obj : MonoBehaviour
         rb.velocity = Vector2.down * spd;
         GameManager.Instance.time = 100;
     }
-    //public void SetBox(EColor eColor, int index)
-    //{
-    //    int rndObj = Random.Range(1, 21);
-    //    int rndColor = Random.Range(1, 7);
-    //}
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == null)

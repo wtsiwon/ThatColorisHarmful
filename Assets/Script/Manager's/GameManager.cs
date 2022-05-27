@@ -143,16 +143,18 @@ public class GameManager : Single<GameManager>
         Vector2 dir = new Vector2();
         int speed = 0;
 
-        if (obj == null || obj.isCan == false) return;
+        if (obj == null || !obj.isCan) return;
 
         if (obj.eColor == EColor.Green)
         {
+            obj.isCan = false;
             dir = Vector2.down;
             RandomSpawnObj();
             speed = 0;
         }
         else if (obj.eColor == EColor.Other)
         {
+            obj.isCan = false;
             dir = Vector2.left;
             Score += SCORE;
             RandomSpawnObj();
@@ -179,14 +181,14 @@ public class GameManager : Single<GameManager>
             CameraManager.Instance.Shake();
             Score += SCORE;
             obj.isCan = false;
-            Destroy(obj);//이거 왜 실행이 안돼냐
+            Destroy(obj.gameObject);//이거 왜 실행이 안돼냐
             RandomSpawnObj();
         }
         else if (obj.eColor == EColor.Other && obj.isCan)
         {
             dir = Vector2.left;
-            RandomSpawnObj();
             obj.isCan = false;
+            RandomSpawnObj();
         }
 
 
