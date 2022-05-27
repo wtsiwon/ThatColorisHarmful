@@ -9,9 +9,12 @@ public class CameraManager : Singleton<CameraManager>
 
     [SerializeField] [Range(0.01f, 0.1f)] float shakeRange = 0.05f; //½¦ÀÌÅ© Å©±â
     [SerializeField] [Range(0.1f, 1f)] float duration = 0.5f; //½¦ÀÌÅ© ±â°£
-    public Camera Main
+    private void Start()
     {
-        get => Camera.main;
+        if(MainCamera == null)
+        {
+            MainCamera = Camera.main;
+        }
     }
     public void Shake()
     {

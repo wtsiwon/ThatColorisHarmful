@@ -179,7 +179,7 @@ public class GameManager : Single<GameManager>
             CameraManager.Instance.Shake();
             Score += SCORE;
             obj.isCan = false;
-            Destroy(obj);
+            Destroy(obj);//이거 왜 실행이 안돼냐
             RandomSpawnObj();
         }
         else if (obj.eColor == EColor.Other && obj.isCan)
