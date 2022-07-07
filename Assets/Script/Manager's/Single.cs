@@ -1,13 +1,15 @@
 using UnityEngine;
 
 public class Single<T> : MonoBehaviour
-    where T : class
+    where T : MonoBehaviour
 {
-    public static T Instance { get; private set; }
-
+    public static T Instance { get; private set; } = null;
     private void Awake()
     {
-        Instance = GetComponent<T>();
+        if(Instance == null)
+        {
+            Instance = GetComponent<T>();
+        }
     }
 
     private void OnDestroy()
@@ -15,3 +17,4 @@ public class Single<T> : MonoBehaviour
         Instance = null;
     }
 }
+

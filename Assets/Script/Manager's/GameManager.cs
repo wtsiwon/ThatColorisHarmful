@@ -7,10 +7,10 @@ using TMPro;
 
 public class GameManager : Single<GameManager>
 {
-    public const int SCORE = 100;
+    public const int SCORE = 100;//한번에 올라가는 점수량
     #region UI변수
     [Header("UI")]
-    public Slider slider;
+    public Slider timeBar;
     public TextMeshProUGUI scoreText;
     public GameObject board;
     public GameObject board2;
@@ -35,6 +35,7 @@ public class GameManager : Single<GameManager>
 
     public int highScore;
     private int score;
+ 
 
     [Header("불리언 변수")]
     public bool isEnd;
@@ -42,6 +43,8 @@ public class GameManager : Single<GameManager>
     [Space(20f)]
     [Header("Object")]
     public Transform pos;
+    public Obj instanceobj;//instanceobj넘겨야할 오브젝트
+
     public List<GameObject> greenobj = new List<GameObject>();
     public List<GameObject> otherobj = new List<GameObject>();
     public List<GameObject> hpobj = new List<GameObject>(3);
@@ -100,23 +103,22 @@ public class GameManager : Single<GameManager>
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))//이거 두개인데
         {
-            if (SlowZone.Instance.instanceobj == null) return;
-            Next(SlowZone.Instance.instanceobj);
+            if (instanceobj == null) return;
+            Next(instanceobj);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (SlowZone.Instance.instanceobj == null) return;
-            Break(SlowZone.Instance.instanceobj);
+            if (instanceobj == null) return;
+            Break(instanceobj);
         }
     }
-    public IEnumerator LimitTime(float Limittime, GameObject gameObject)
+    public IEnumerator LimitTime(float Limittime)
     {
         float time = Time.time;
         while (Time.time - time < Limittime)
         {
-            slider.value = Time.time - time;
+            timeBar.value = Time.time - time;
         }
-        gameObject.GetComponent<Obj>().dspd = 10;
         yield return null;
     }
     public int Score
@@ -143,11 +145,11 @@ public class GameManager : Single<GameManager>
         Vector2 dir = new Vector2();
         int speed = 0;
 
-        if (obj == null || !obj.isCan) return;
+        if (obj == null || obj.isCan == false) return;
 
         if (obj.eColor == EColor.Green)
         {
-            obj.isCan = false;
+            obj.isCan = true;
             dir = Vector2.down;
             RandomSpawnObj();
             speed = 0;
@@ -161,7 +163,7 @@ public class GameManager : Single<GameManager>
             speed = 50;
         }
 
-        obj.GetComponent<Rigidbody2D>().velocity = dir * (obj.dspd + speed);
+        obj.GetComponent<Rigidbody2D>().velocity = dir * (obj.spd + speed);
     }
     /// <summary>
     /// 떨어지는 오브젝트 부시는 함수

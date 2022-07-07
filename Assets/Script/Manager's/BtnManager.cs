@@ -61,7 +61,7 @@ public class BtnManager : Single<BtnManager>//dontDestroy¾ø´Â ½Ì±ÛÅæ
         if (nextButton == null) return;
         nextButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.Next(SlowZone.Instance.instanceobj);
+            GameManager.Instance.Next(GameManager.Instance.instanceobj);
         });
     }
     public void Break()
@@ -69,7 +69,7 @@ public class BtnManager : Single<BtnManager>//dontDestroy¾ø´Â ½Ì±ÛÅæ
         if (breakButton == null) return;
         breakButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.Break(SlowZone.Instance.instanceobj);
+            GameManager.Instance.Break(GameManager.Instance.instanceobj);
         });
     }
 
