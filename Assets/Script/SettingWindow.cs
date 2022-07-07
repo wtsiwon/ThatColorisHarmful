@@ -33,7 +33,10 @@ public class SettingWindow : MonoBehaviour
         BtnManager.Instance.SettingTurnOnOff = true;
         BtnManager.Instance.play();
     }
-
+    public void ChangeBtn()
+    {
+        BtnManager.Instance.BtnLocalChange();
+    }
     private void Start()
     {
         Setting.GetComponent<RectTransform>().DOScale(new Vector2(1, 1), 0.5f);

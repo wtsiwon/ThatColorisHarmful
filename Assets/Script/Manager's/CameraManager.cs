@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] [Range(0.1f, 1f)] float duration = 0.5f; //Ω¶¿Ã≈© ±‚∞£
     private void Start()
     {
+        Instance = this;
         if(MainCamera == null)
         {
             MainCamera = Camera.main;
