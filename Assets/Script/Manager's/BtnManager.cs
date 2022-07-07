@@ -72,7 +72,15 @@ public class BtnManager : Single<BtnManager>//dontDestroy¾ø´Â ½Ì±ÛÅæ
             GameManager.Instance.Break(GameManager.Instance.instanceobj);
         });
     }
-
+    public void BtnLocalChange()
+    {
+        float a;
+        a = breakButton.GetComponent<RectTransform>().localPosition.x;
+        breakButton.GetComponent<RectTransform>().localPosition = 
+            new Vector2(nextButton.GetComponent<RectTransform>().localPosition.x, -581);
+        nextButton.GetComponent<RectTransform>().localPosition =
+            new Vector2(a, -581);
+    }
     public void play()
     {
         Time.timeScale = 1;

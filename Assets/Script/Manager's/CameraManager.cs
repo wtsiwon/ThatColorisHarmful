@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : Singleton<CameraManager>
+public class CameraManager : MonoBehaviour
 {
+    static public CameraManager Instance { get; set; }
     [SerializeField] private Camera MainCamera;
     Vector3 CameraPos;
 
@@ -11,6 +12,7 @@ public class CameraManager : Singleton<CameraManager>
     [SerializeField] [Range(0.1f, 1f)] float duration = 0.5f; //Ω¶¿Ã≈© ±‚∞£
     private void Start()
     {
+        Instance = this;
         if(MainCamera == null)
         {
             MainCamera = Camera.main;
