@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class GameManager : Single<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     public const int SCORE = 100;//한번에 올라가는 점수량
     #region UI변수

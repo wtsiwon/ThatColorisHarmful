@@ -661,7 +661,6 @@ GameObject:
   - component: {fileID: 956822070}
   - component: {fileID: 956822071}
   - component: {fileID: 956822072}
-  - component: {fileID: 956822073}
   m_Layer: 0
   m_Name: Checkbox
   m_TagString: SlowZone
@@ -730,19 +729,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &956822073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956822069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1200d6abbed32944d86df6882df31dfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instanceobj: {fileID: 0}
 --- !u!1 &1011127328
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28278f95f4f7b33439ba548667ee0399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1937656003}
+  timeBar: {fileID: 0}
   scoreText: {fileID: 1249612226}
   board: {fileID: 5614833566971865502, guid: 81b8aa77c5a6d734f94bc6a15e9e9f05, type: 3}
   board2: {fileID: 3114847472519699353, guid: 0d8232e9516b7054790d46cdf727e16e, type: 3}
@@ -788,6 +774,7 @@ MonoBehaviour:
   highScore: 0
   isEnd: 0
   pos: {fileID: 507556286}
+  instanceobj: {fileID: 0}
   greenobj:
   - {fileID: 1980256074166086564, guid: 77d89890126c8c74990504b3de0768c6, type: 3}
   - {fileID: 621564164468524974, guid: 492d69c0ed0a7934a9a2b6edee6414f2, type: 3}
@@ -2240,7 +2227,7 @@ GameObject:
   - component: {fileID: 1881198257}
   - component: {fileID: 1881198256}
   m_Layer: 0
-  m_Name: Adventurer Sprite Sheet v1.3_26
+  m_Name: playerani
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

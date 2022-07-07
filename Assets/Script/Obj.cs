@@ -15,7 +15,7 @@ public class Obj : MonoBehaviour
 
     //점수가 높을 수록 느려지는 속도가 빨라짐
     private float[] increment = new float[6] {10000, 50000, 200000, 500000, 1000000, 2000000};
-    
+    private Dictionary<float, float> incrementdic = new Dictionary<float, float>();
     public float spd { get; set; }
 
     public bool isCan;//버튼이 눌렸나?(이미 한번 틀렸거나 성공하거나 할 수 있나?)
@@ -51,7 +51,7 @@ public class Obj : MonoBehaviour
             {
                 if(GameManager.Instance.Score > increment[i])
                 {
-
+                    increment[i]
                 }
             }
             rb.velocity = Vector2.down * spd;//??? 어떨땐 나고 불규칙적인s
