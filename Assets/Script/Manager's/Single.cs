@@ -3,18 +3,27 @@ using UnityEngine;
 public class Single<T> : MonoBehaviour
     where T : MonoBehaviour
 {
-    public static T Instance { get; private set; } = null;
-    private void Awake()
+    private static T instance;
+    public static T Instance
     {
-        if(Instance == null)
+        get
         {
-            Instance = GetComponent<T>();
+            Instance = FindObjectOfType<T>();
+            if (Instance == null)
+            {
+                GameObject obj = new GameObject();
+                instance = obj.AddComponent<T>();
+            }
+            return instance;
+        }
+        set
+        {
+            return;
         }
     }
-
-    private void OnDestroy()
-    {
-        Instance = null;
-    }
 }
+
+
+
+
 

@@ -10,12 +10,15 @@ public enum EColor
 public class Obj : MonoBehaviour
 {
     public EColor eColor;
-    public const float dspd = 10;//원래 속도(변하지 않음)
-    public const float slowspd = 5;
+    public const float DSPD = 10;//원래 속도(변하지 않음)
+    public const float SLOWSPD = 5;
+    public const float FASTSPD = 50;
+    
 
     //점수가 높을 수록 느려지는 속도가 빨라짐
     private float[] increment = new float[6] {10000, 50000, 200000, 500000, 1000000, 2000000};
     private Dictionary<float, float> incrementdic = new Dictionary<float, float>();
+
     public float spd { get; set; }
 
     public bool isCan;//버튼이 눌렸나?(이미 한번 틀렸거나 성공하거나 할 수 있나?)
@@ -26,8 +29,8 @@ public class Obj : MonoBehaviour
     private void OnEnable()
     {
         isCan = true;
-        spd = dspd;
-
+        spd = DSPD;
+        Debug.Log(spd);
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * spd;
         GameManager.Instance.time = 100;
@@ -35,7 +38,7 @@ public class Obj : MonoBehaviour
 
     private void Update()
     {
-        if (SlowCheck(this) == true)
+        if (SlowCheck() == true)
         {
             isSlow = true;
             Slow();
@@ -51,10 +54,10 @@ public class Obj : MonoBehaviour
             {
                 if(GameManager.Instance.Score > increment[i])
                 {
-                    increment[i]
+                    //increment[i]
                 }
             }
-            rb.velocity = Vector2.down * spd;//??? 어떨땐 나고 불규칙적인s
+            rb.velocity = Vector2.down * spd;
         }
     }
     /// <summary>
@@ -62,9 +65,9 @@ public class Obj : MonoBehaviour
     /// </summary>
     /// <param name="obj">판별할 오브젝트</param>
     /// <returns></returns>
-    private bool SlowCheck(Obj obj)
+    private bool SlowCheck()
     {
-        if (obj.transform.position.y < 10 && isCan == false)
+        if (transform.position.y < 3 && isCan == true)
         {
             return true;
         }
@@ -75,22 +78,17 @@ public class Obj : MonoBehaviour
     /// </summary>
     private void Slow()
     {
-        spd = slowspd;
+        spd = SLOWSPD;
     }
     /// <summary>
     /// 느리게 끝
     /// </summary>
     private void SlowEnd()
     {
-        spd = dspd;
+        spd = DSPD;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision == null)
-        {
-            Debug.Log(collision);
-            return;
-        }
         if (collision.CompareTag("Ground"))
         {
             GameManager.Instance.hp -= 1;
@@ -102,6 +100,11 @@ public class Obj : MonoBehaviour
         }
         
     }
+    /// <summary>
+    /// 초록색이냐 아니냐 확인하는 함수
+    /// </summary>
+    /// <param name="obj">확인할 오브젝트</param>
+    /// <returns></returns>
     public bool IsCheckGreen(Obj obj)
     {
         if (obj.eColor == EColor.Green) return true;

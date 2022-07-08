@@ -8,6 +8,7 @@ using TMPro;
 public class GameManager : Singleton<GameManager>
 {
     public const int SCORE = 100;//한번에 올라가는 점수량
+
     #region UI변수
     [Header("UI")]
     public Slider timeBar;
@@ -45,10 +46,14 @@ public class GameManager : Singleton<GameManager>
     public Transform pos;
     public Obj instanceobj;//instanceobj넘겨야할 오브젝트
 
-    public List<GameObject> greenobj = new List<GameObject>();
-    public List<GameObject> otherobj = new List<GameObject>();
     public List<GameObject> hpobj = new List<GameObject>(3);
-
+    /// <summary>
+    /// 싱글톤 안에 보셈
+    /// </summary>
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     private void Start()
     {
         factory = FindObjectOfType<ObjFactory>();
@@ -149,20 +154,18 @@ public class GameManager : Singleton<GameManager>
 
         if (obj.eColor == EColor.Green)
         {
-            obj.isCan = true;
             dir = Vector2.down;
             RandomSpawnObj();
             speed = 0;
         }
         else if (obj.eColor == EColor.Other)
         {
-            obj.isCan = false;
             dir = Vector2.left;
             Score += SCORE;
             RandomSpawnObj();
             speed = 50;
         }
-
+        obj.isCan = false;
         obj.GetComponent<Rigidbody2D>().velocity = dir * (obj.spd + speed);
     }
     /// <summary>
